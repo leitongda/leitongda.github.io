@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="使用情景一：在Linux或者mac上频繁登录另外一台主机   使用情景二：在需要自动化部署的时候  这时候每次都要输入口令 这时候就需要免密登录 用公钥加密（相当于锁） 私钥解密（相当于钥匙）  步骤1： 生成密钥对ssh-keygen -t rsa -C &amp;quot;名称&amp;quot; -f &amp;quot;名称_rsa&amp;quot; // rsa 加密方式 步骤2： 上传配置公钥上传公钥到服务器对应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux预备知识——免密远程登录">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/日记本/Linux预备知识——免密远程登录/index.html">
+<meta property="og:site_name" content="野路子前端">
+<meta property="og:description" content="使用情景一：在Linux或者mac上频繁登录另外一台主机   使用情景二：在需要自动化部署的时候  这时候每次都要输入口令 这时候就需要免密登录 用公钥加密（相当于锁） 私钥解密（相当于钥匙）  步骤1： 生成密钥对ssh-keygen -t rsa -C &amp;quot;名称&amp;quot; -f &amp;quot;名称_rsa&amp;quot; // rsa 加密方式 步骤2： 上传配置公钥上传公钥到服务器对应">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-24T15:49:31.701Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux预备知识——免密远程登录">
+<meta name="twitter:description" content="使用情景一：在Linux或者mac上频繁登录另外一台主机   使用情景二：在需要自动化部署的时候  这时候每次都要输入口令 这时候就需要免密登录 用公钥加密（相当于锁） 私钥解密（相当于钥匙）  步骤1： 生成密钥对ssh-keygen -t rsa -C &amp;quot;名称&amp;quot; -f &amp;quot;名称_rsa&amp;quot; // rsa 加密方式 步骤2： 上传配置公钥上传公钥到服务器对应">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——免密远程登录/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux预备知识——免密远程登录 | 野路子前端</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">野路子前端</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">活儿一定要细～</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——免密远程登录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux预备知识——免密远程登录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:49:30+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>使用情景一：在Linux或者mac上频繁登录另外一台主机</p>
+</blockquote>
+<blockquote>
+<p>使用情景二：在需要自动化部署的时候</p>
+</blockquote>
+<h6 id="这时候每次都要输入口令-这时候就需要免密登录"><a href="#这时候每次都要输入口令-这时候就需要免密登录" class="headerlink" title="这时候每次都要输入口令 这时候就需要免密登录"></a>这时候每次都要输入口令 这时候就需要免密登录</h6><blockquote>
+<p>用公钥加密（相当于锁） 私钥解密（相当于钥匙）</p>
+</blockquote>
+<h4 id="步骤1：-生成密钥对"><a href="#步骤1：-生成密钥对" class="headerlink" title="步骤1： 生成密钥对"></a>步骤1： 生成密钥对</h4><p><code>ssh-keygen -t rsa -C &quot;名称&quot; -f &quot;名称_rsa&quot; // rsa 加密方式</code></p>
+<h4 id="步骤2：-上传配置公钥"><a href="#步骤2：-上传配置公钥" class="headerlink" title="步骤2： 上传配置公钥"></a>步骤2： 上传配置公钥</h4><p>上传公钥到服务器对应帐号的home路径下的<code>./ssh/</code>中<br><code>ssh-copy-id -i &quot;公钥文件名&quot; 用户名@服务器ip或域名</code><br><code>// 配置公钥文件访问权限为 600 -rw-------</code><br>登录服务器查看公钥是否上传<br><code>ssh 用户名@服务器ip或域名</code><br><code>cd /home/</code><br><code>ls -a // 查看所有文件（包括隐藏文件）</code><br><code>cd .ssh/</code><br><code>cat &quot;公钥文件名&quot; // 查看文件内容中是否是正确</code><br><code>检查正确上传之后 exit 退出</code></p>
+<blockquote>
+<p>使用scp上传<br>可以用 <code>cat abc_rsa.pub &gt;&gt; // 写入到文件里面</code></p>
+</blockquote>
+<h4 id="步骤3：-配置本地私钥"><a href="#步骤3：-配置本地私钥" class="headerlink" title="步骤3： 配置本地私钥"></a>步骤3： 配置本地私钥</h4><p>在同层目录可以显示传入<br><code>ssh -i 私钥文件名 用户名@服务器ip或域名 // 就可以面给密登录</code><br>不在同一级目录<br><code>ssh -i 相对路径/私钥文件名 用户名@服务器ip或域名</code><br><code>例：ssh -i .ssh/abc_res 用户名@服务器ip或域名 // 假设我的私钥文件名为abc_rsa</code></p>
+<h4 id="步骤4：-免密登录功能的本地配置文件"><a href="#步骤4：-免密登录功能的本地配置文件" class="headerlink" title="步骤4： 免密登录功能的本地配置文件"></a>步骤4： 免密登录功能的本地配置文件</h4><p>编辑自己 <code>home</code> 目录的 <code>./ssh/</code> 路径下的<code>config</code> 文件<br><code>User root // 登录的用户名</code><br><code>Host zhangsan // 服务器的别名</code><br><code>HostName www.abc.com // 服务器的ip或网址</code><br><code>Port 54322 // 端口号（默认填22）</code><br><code>StrictHostKeyChecking no</code><br><code>IdentityFile ~/ssh/abc_rsa // 指定私钥文件的地址</code><br><code>IdentitiesOnly yes</code><br><code>Protocol 2 // ssh的版本</code><br><code>Compression yes</code><br><code>ServerAliveInterval 60 // 每个60s网服务器发一个心跳</code><br><code>ServerAliveCountMax 20</code><br><code>LogLevel INFO // 日志输出等级，只输出主要日志</code></p>
+<blockquote>
+<p>如果有多个服务器，上面的多复制几块</p>
+</blockquote>
+<p>配置config 文件的访问权限为644</p>
+<blockquote>
+<p>config 的访问权限也应该为 <code>600 -rw-------</code></p>
+</blockquote>
+<p><code>ssh 别名 // 登录</code></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/24/日记本/koa2/" rel="next" title="koa2">
+                <i class="fa fa-chevron-left"></i> koa2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/24/日记本/Linux预备知识——快捷键/" rel="prev" title="Linux预备知识——快捷键">
+                Linux预备知识——快捷键 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head_img.jpg"
+                alt="Lei Tongda" />
+            
+              <p class="site-author-name" itemprop="name">Lei Tongda</p>
+              <p class="site-description motion-element" itemprop="description">努力的最大意义</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/leitongda" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#这时候每次都要输入口令-这时候就需要免密登录"><span class="nav-number">1.</span> <span class="nav-text">这时候每次都要输入口令 这时候就需要免密登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤1：-生成密钥对"><span class="nav-number"></span> <span class="nav-text">步骤1： 生成密钥对</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤2：-上传配置公钥"><span class="nav-number"></span> <span class="nav-text">步骤2： 上传配置公钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤3：-配置本地私钥"><span class="nav-number"></span> <span class="nav-text">步骤3： 配置本地私钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤4：-免密登录功能的本地配置文件"><span class="nav-number"></span> <span class="nav-text">步骤4： 免密登录功能的本地配置文件</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lei Tongda</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">保持 - 对称</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">页尾 - 呵呵</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

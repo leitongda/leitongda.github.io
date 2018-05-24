@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/11/JavaScript补间动画引擎-Tween-JS/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/随笔/浏览器调试——Timeline掌控帧渲染模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lei Tongda">
@@ -296,7 +296,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/11/JavaScript补间动画引擎-Tween-JS/" itemprop="url">JavaScript补间动画引擎 -Tween.JS</a></h1>
+                <a class="post-title-link" href="/2018/05/24/随笔/浏览器调试——Timeline掌控帧渲染模式/" itemprop="url">浏览器调试——Timeline掌控帧渲染模式</a></h1>
         
 
         <div class="post-meta">
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T22:16:33+08:00">2018-04-11</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:50:32+08:00">2018-05-24</time>
             
 
             
@@ -346,20 +346,15 @@
 
       
         
-          <p>github地址：<a href="https://github.com/tweenjs/tween.js" target="_blank" rel="noopener">TweenJs</a></p>
-<pre><code>var box = document.createElement(&apos;div&apos;);
-box.style.setProperty(&apos;background-color&apos;, &apos;#008800&apos;);
-box.style.setProperty(&apos;width&apos;, &apos;100px&apos;);
-box.style.setProperty(&apos;height&apos;, &apos;100px&apos;);
-document.body.appendChild(box);
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/11/JavaScript补间动画引擎-Tween-JS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>网页动画能够做到每秒60帧，就会跟显示器同步刷新，一秒之内进行60次重新渲染，每次重新渲染的时间不能超过16,66毫秒</p>
+<p>黄色：JavaScript执行<br>紫色：样式计算和布局，及重排<br>绿色：重绘</p>
+<p><code>window.requestAnimationFrame() // 下一次</code></p>
+<p><code>window.requestldleCallback() // 下几次重新渲染时间</code></p>
+<h3 id="触发分层"><a href="#触发分层" class="headerlink" title="触发分层"></a>触发分层</h3><p>1.获取DOM并将其分割为多个层<br>2.将每个层独立的绘制进位图中<br>3.将层作为纹理上传至GUP<br>4.复合多个层来生成最终的屏幕图像</p>
+<p>1.DOM子树渲染层（RenderLayer）RenderObject-&gt;GraphicsContext（根元素、position、transform、半透明、CSS滤镜、Canvas2D、video、溢出）；<br>2.Compositor-&gt;渲染层子树的图形层</p>
+
+          
         
       
     </div>
@@ -411,7 +406,7 @@ document.body.appendChild(box);
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/11/CentOS-命令大全/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/webpack-externals/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lei Tongda">
@@ -430,7 +425,7 @@ document.body.appendChild(box);
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/11/CentOS-命令大全/" itemprop="url">CentOS 命令大全</a></h1>
+                <a class="post-title-link" href="/2018/05/24/日记本/webpack-externals/" itemprop="url">webpack-externals</a></h1>
         
 
         <div class="post-meta">
@@ -442,7 +437,7 @@ document.body.appendChild(box);
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T22:01:08+08:00">2018-04-11</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:50:03+08:00">2018-05-24</time>
             
 
             
@@ -480,17 +475,1086 @@ document.body.appendChild(box);
 
       
         
-          <p>[转] <a href="https://www.centos.net.cn/archive/4385" target="_blank" rel="noopener">centos命令大全</a></p>
-<h1 id="CentOS-命令大全"><a href="#CentOS-命令大全" class="headerlink" title="CentOS 命令大全"></a>CentOS 命令大全</h1><h2 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h2><p>arch 显示机器的处理器架构(1)</p>
-<p>uname -m 显示机器的处理器架构(2)</p>
-<p>uname -r 显示正在使用的内核版本</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/11/CentOS-命令大全/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p><a href="https://webpack.js.org/configuration/externals/#externals" target="_blank" rel="noopener">查看文档</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——进程与线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/日记本/Linux预备知识——进程与线程/" itemprop="url">Linux预备知识——进程与线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:49:54+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Linux 查看进程树</p>
+<blockquote>
+<p><code>pstrss // 查看进程树</code></p>
+</blockquote>
+<p>调度和切换的时间：进程&gt;线程&gt;协程</p>
+<p>理论上一个核一个线程效率最高</p>
+<h4 id="top-命令"><a href="#top-命令" class="headerlink" title="top 命令"></a>top 命令</h4><p><code>pid 进程编号</code><br><code>按q键退出</code></p>
+<h4 id="ps-命令"><a href="#ps-命令" class="headerlink" title="ps 命令"></a>ps 命令</h4><p><code>ps aux</code><br><code>sudo ps aux // 非root用户</code><br><code>// pid 越小的越有可能是主线程</code><br><code>//（例外：pid最大是2的16次方，pid一直增加，当增加到最大值，会从0开始，没有占用的数字上）</code><br><code>ps aux | grep python // grep 进行分组 筛选出python</code></p>
+<h4 id="kill-、pkill命令"><a href="#kill-、pkill命令" class="headerlink" title="kill 、pkill命令"></a>kill 、pkill命令</h4><p><code>kill 进程的pid</code></p>
+<h4 id="w-命令"><a href="#w-命令" class="headerlink" title="w 命令"></a>w 命令</h4><p><code>如果服务器被多个人使用， 当你需要重启服务的时候  使用w查看有没有其它人在服务器上工作。</code></p>
+<h4 id="重启网卡"><a href="#重启网卡" class="headerlink" title="重启网卡"></a>重启网卡</h4><blockquote>
+<p><code>ip addr</code><br>或<br><code>ifconfig</code><br>拿到网卡名字</p>
+</blockquote>
+<blockquote>
+<p><code>cd /etc/sysconfig/network-scripts/</code><br><code>ls // 查看目录下是否有 ifcfg-网卡名称</code><br><code>ifdown 网卡名称 // 关掉网卡[慎用]</code><br><code>ifup 网卡名称 // 启动网卡</code></p>
+</blockquote>
+<h4 id="排查网络故障"><a href="#排查网络故障" class="headerlink" title="排查网络故障"></a>排查网络故障</h4><blockquote>
+<p>能访问网络，但是访问不到特定网络<br><code>ping 网址 // ping不通</code></p>
+</blockquote>
+<p>使用 <code>tranceroute 网址</code></p>
+<blockquote>
+<p>会出来一啪啦的ip地址，这些地址就是你访问这个网址 所经过的路由器</p>
+</blockquote>
+<h4 id="如何找到占用端口的进程"><a href="#如何找到占用端口的进程" class="headerlink" title="如何找到占用端口的进程"></a>如何找到占用端口的进程</h4><blockquote>
+<p>使用 <code>netstat</code> 或者 <code>ss</code> 查看所有进程<br><code>netstat -an</code><br><code>netstat -anp // 显示进程 p代表process（英语一定要很OK）</code><br><code>netstat -anp | grep 8080 // 分组筛选</code><br>这个时候就可以使用<code>kill 加 进程id</code> 杀死这个进程了</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——快捷键/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/日记本/Linux预备知识——快捷键/" itemprop="url">Linux预备知识——快捷键</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:49:41+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h1><p><code>ssh root@ip地址</code><br><code>// 然后输入密码</code></p>
+<h1 id="网络管理命令"><a href="#网络管理命令" class="headerlink" title="网络管理命令"></a>网络管理命令</h1><p><code>systemctl status httpd</code><br><code>systemctl status apache2</code><br><code>systemctl start apache2 // 启动</code><br><code>systemctl stop apache2  // 停止</code><br><code>enable // 跟随系统启动一起启动</code><br><code>disable // 不跟随系统一起启动</code><br><code>ifconfig // 查看ip地址</code><br><code>ip addr // 查看ip地址</code><br><code>route // 路由信息，网关</code></p>
+<h1 id="命令行的下载命令："><a href="#命令行的下载命令：" class="headerlink" title="命令行的下载命令："></a>命令行的下载命令：</h1><blockquote>
+<p><code>wget 下载地址</code><br><code>curl  下载地址 -o 写入到指定名称的文件 --progress</code><br><code>// 现实进度条 --progress</code></p>
+</blockquote>
+<h1 id="查看服务器时间"><a href="#查看服务器时间" class="headerlink" title="查看服务器时间"></a>查看服务器时间</h1><p><code>date</code></p>
+<h1 id="查看Linux-帮助"><a href="#查看Linux-帮助" class="headerlink" title="查看Linux 帮助"></a>查看Linux 帮助</h1><p><code>curl --help</code><br><code>man curl //按q退出</code></p>
+<h1 id="在终端不小心按了-ctrl-s-怎么办？？"><a href="#在终端不小心按了-ctrl-s-怎么办？？" class="headerlink" title="在终端不小心按了 ctrl + s 怎么办？？"></a>在终端不小心按了 ctrl + s 怎么办？？</h1><blockquote>
+<p><code>ctrl + s // 暂停屏幕输出</code><br>使用<br><code>ctrl + q // 恢复屏幕输出</code></p>
+</blockquote>
+<h1 id="其它快捷键"><a href="#其它快捷键" class="headerlink" title="其它快捷键"></a>其它快捷键</h1><p><code>ctrl + d // 结束输入或退出shell</code><br><code>ctrl + l //（小写的L，不是I）清屏，等同于clear</code><br><code>ctrl + a / ctrl + e // 快速移动光标到行首/行尾</code></p>
+<p>进入vim后，退出时 提示没有文件名<br><code>:q! // 不保存，强行退出</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——免密远程登录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/日记本/Linux预备知识——免密远程登录/" itemprop="url">Linux预备知识——免密远程登录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:49:30+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>使用情景一：在Linux或者mac上频繁登录另外一台主机</p>
+</blockquote>
+<blockquote>
+<p>使用情景二：在需要自动化部署的时候</p>
+</blockquote>
+<h6 id="这时候每次都要输入口令-这时候就需要免密登录"><a href="#这时候每次都要输入口令-这时候就需要免密登录" class="headerlink" title="这时候每次都要输入口令 这时候就需要免密登录"></a>这时候每次都要输入口令 这时候就需要免密登录</h6><blockquote>
+<p>用公钥加密（相当于锁） 私钥解密（相当于钥匙）</p>
+</blockquote>
+<h4 id="步骤1：-生成密钥对"><a href="#步骤1：-生成密钥对" class="headerlink" title="步骤1： 生成密钥对"></a>步骤1： 生成密钥对</h4><p><code>ssh-keygen -t rsa -C &quot;名称&quot; -f &quot;名称_rsa&quot; // rsa 加密方式</code></p>
+<h4 id="步骤2：-上传配置公钥"><a href="#步骤2：-上传配置公钥" class="headerlink" title="步骤2： 上传配置公钥"></a>步骤2： 上传配置公钥</h4><p>上传公钥到服务器对应帐号的home路径下的<code>./ssh/</code>中<br><code>ssh-copy-id -i &quot;公钥文件名&quot; 用户名@服务器ip或域名</code><br><code>// 配置公钥文件访问权限为 600 -rw-------</code><br>登录服务器查看公钥是否上传<br><code>ssh 用户名@服务器ip或域名</code><br><code>cd /home/</code><br><code>ls -a // 查看所有文件（包括隐藏文件）</code><br><code>cd .ssh/</code><br><code>cat &quot;公钥文件名&quot; // 查看文件内容中是否是正确</code><br><code>检查正确上传之后 exit 退出</code></p>
+<blockquote>
+<p>使用scp上传<br>可以用 <code>cat abc_rsa.pub &gt;&gt; // 写入到文件里面</code></p>
+</blockquote>
+<h4 id="步骤3：-配置本地私钥"><a href="#步骤3：-配置本地私钥" class="headerlink" title="步骤3： 配置本地私钥"></a>步骤3： 配置本地私钥</h4><p>在同层目录可以显示传入<br><code>ssh -i 私钥文件名 用户名@服务器ip或域名 // 就可以面给密登录</code><br>不在同一级目录<br><code>ssh -i 相对路径/私钥文件名 用户名@服务器ip或域名</code><br><code>例：ssh -i .ssh/abc_res 用户名@服务器ip或域名 // 假设我的私钥文件名为abc_rsa</code></p>
+<h4 id="步骤4：-免密登录功能的本地配置文件"><a href="#步骤4：-免密登录功能的本地配置文件" class="headerlink" title="步骤4： 免密登录功能的本地配置文件"></a>步骤4： 免密登录功能的本地配置文件</h4><p>编辑自己 <code>home</code> 目录的 <code>./ssh/</code> 路径下的<code>config</code> 文件<br><code>User root // 登录的用户名</code><br><code>Host zhangsan // 服务器的别名</code><br><code>HostName www.abc.com // 服务器的ip或网址</code><br><code>Port 54322 // 端口号（默认填22）</code><br><code>StrictHostKeyChecking no</code><br><code>IdentityFile ~/ssh/abc_rsa // 指定私钥文件的地址</code><br><code>IdentitiesOnly yes</code><br><code>Protocol 2 // ssh的版本</code><br><code>Compression yes</code><br><code>ServerAliveInterval 60 // 每个60s网服务器发一个心跳</code><br><code>ServerAliveCountMax 20</code><br><code>LogLevel INFO // 日志输出等级，只输出主要日志</code></p>
+<blockquote>
+<p>如果有多个服务器，上面的多复制几块</p>
+</blockquote>
+<p>配置config 文件的访问权限为644</p>
+<blockquote>
+<p>config 的访问权限也应该为 <code>600 -rw-------</code></p>
+</blockquote>
+<p><code>ssh 别名 // 登录</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/koa2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/日记本/koa2/" itemprop="url">koa2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:49:20+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先<code>node</code>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm init -y // 初始化</span><br><span class="line">npm i koa   // 安装koa</span><br><span class="line">npm install --save-dev babel-cli // 安装babel</span><br><span class="line">npm install --save-dev babel-preset-es2015</span><br><span class="line">npm install --save-dev babel-preset-stage-0</span><br></pre></td></tr></table></figure></p>
+<p><code>app.js</code> 内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import Koa from &apos;koa&apos;;</span><br><span class="line">import &apos;babel-polyfill&apos;;</span><br><span class="line"></span><br><span class="line">const app = new Koa();</span><br><span class="line"></span><br><span class="line">app.use(async ctx =&gt; &#123;</span><br><span class="line">    ctx.body = &apos;Hello&apos;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(3000, function () &#123;</span><br><span class="line">    console.log(&apos;localhost:3000&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>配置<code>.babelrc</code>文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;presets&quot;:[</span><br><span class="line">      &quot;es2015&quot;,</span><br><span class="line">      &quot;stage-0&quot;</span><br><span class="line">	],</span><br><span class="line">	&quot;plugins&quot;:[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>babel</code>将<code>index.js</code>编译到<code>index_o.js</code>文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 使用命令</span><br><span class="line">babel index.js -o index_o.js</span><br></pre></td></tr></table></figure></p>
+<p>运行<br><code>node app_o.js // 看到控制台输出 localhost:3000 则表示成功</code><br>打开浏览器<br>访问：<code>localhost:3000</code><br>就可以看到Hello</p>
+<p>注：<br>有时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app_o.js</span><br></pre></td></tr></table></figure></p>
+<p>会报错：<img src="https://upload-images.jianshu.io/upload_images/5811981-e581d95a4c7212ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="控制台截图"></p>
+<p>解决办法：<br>在<code>index.js</code>中加入下面这句话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &apos;babel-polyfill&apos;;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/babel配置指南--兼容老式浏览器的垫片/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/日记本/babel配置指南--兼容老式浏览器的垫片/" itemprop="url">babel配置指南--兼容老式浏览器的垫片</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:49:04+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="babel-runtime"><a href="#babel-runtime" class="headerlink" title="babel-runtime"></a><a href="http://babeljs.io/docs/plugins/transform-runtime/" target="_blank" rel="noopener">babel-runtime</a></h3><h6 id="将es6编译成es5去运行，前端可以使用es6的语法来写，最终浏览器上运行的是es5"><a href="#将es6编译成es5去运行，前端可以使用es6的语法来写，最终浏览器上运行的是es5" class="headerlink" title="将es6编译成es5去运行，前端可以使用es6的语法来写，最终浏览器上运行的是es5"></a>将es6编译成es5去运行，前端可以使用es6的语法来写，最终浏览器上运行的是es5</h6><p>在大多数情况下，你应该安装 <code>babel-plugin-transform-runtime</code> 作为项目依赖（用 <code>--save-dev</code> ）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-plugin-transform-runtime</span><br></pre></td></tr></table></figure></p>
+<p>和 <code>babel-runtime</code> 作为生产依赖关系（用 <code>--save-dev</code> ）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save babel-runtime</span><br></pre></td></tr></table></figure></p>
+<p>添加下面一行到你的 <code>.babelrc</code> 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [&quot;transform-runtime&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;transform-runtime&quot;, &#123;</span><br><span class="line">      &quot;helpers&quot;: false,</span><br><span class="line">      &quot;polyfill&quot;: false,</span><br><span class="line">      &quot;regenerator&quot;: true,</span><br><span class="line">      &quot;moduleName&quot;: &quot;babel-runtime&quot;</span><br><span class="line">    &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="babel-polyfill"></a><a href="https://babeljs.io/docs/usage/polyfill/" target="_blank" rel="noopener">babel-polyfill</a></h3><h6 id="不会将代码编译成低版本的js，他的原理是当运行环境中并没有实现的一些方法的时候会去做兼容"><a href="#不会将代码编译成低版本的js，他的原理是当运行环境中并没有实现的一些方法的时候会去做兼容" class="headerlink" title="不会将代码编译成低版本的js，他的原理是当运行环境中并没有实现的一些方法的时候会去做兼容"></a>不会将代码编译成低版本的js，他的原理是当运行环境中并没有实现的一些方法的时候会去做兼容</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save babel-polyfill</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/koa2——实战2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/日记本/koa2——实战2/" itemprop="url">koa2——实战2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:48:59+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Koa中间件：<a href="https://github.com/koajs/koa/wiki#middleware" target="_blank" rel="noopener">github</a></p>
+<p>首先安装 静态文件服务中间件： <a href="https://github.com/koajs/static" target="_blank" rel="noopener">koa-static</a><br>模板：<a href="https://github.com/koa-modules/swig" target="_blank" rel="noopener">koa-swig</a><br>路由：<a href="https://github.com/alexmingoia/koa-router" target="_blank" rel="noopener">koa-router</a><br>安装：<a href="https://www.gulpjs.com.cn/" target="_blank" rel="noopener">gulp</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure></p>
+<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install koa-static</span><br></pre></td></tr></table></figure></p>
+<p>API：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const Koa = require(&apos;koa&apos;);</span><br><span class="line">const app = new Koa();</span><br><span class="line">app.use(require(&apos;koa-static&apos;)(root, opts));</span><br></pre></td></tr></table></figure></p>
+<p><code>root // 根目录字符串。此根目录上的任何内容都不可用。</code><br><code>opts // 对象选项</code><br>选项:</p>
+<ul>
+<li><code>maxage</code> 浏览器缓存 max-age以毫秒为单位。默认值为0</li>
+<li><code>hidden</code> 允许传输隐藏文件。默认为false</li>
+<li><code>index</code> 默认文件名，默认为<code>index.html</code></li>
+<li><code>defer</code> 如果为：<code>true</code>,在返回<code>next()</code>之后服务，允许任何下游中间件首先响应。</li>
+<li><code>gzip</code> 当客户端支持<code>GZIP</code>时，如果存在<code>.gz</code>扩展的请求文件，请尝试自动服务文件的<code>GZIP</code>版本。默认为<code>true</code>。</li>
+<li><code>br</code></li>
+<li><a href="https://github.com/koajs/send#setheaders" target="_blank" rel="noopener">setHeaders</a></li>
+<li><code>extensions</code></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Vue/Vue代码-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/Vue/Vue代码-1/" itemprop="url">Vue代码-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:48:46+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;link href=&quot;https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        html &#123;</span><br><span class="line">            font-size: .9em;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .table td &#123;</span><br><span class="line">            vertical-align: middle;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .adv-images &#123;</span><br><span class="line">            object-fit: cover;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;container pt-5&quot; id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;table class=&quot;table table-striped table-bordered table-hover table-sm text-center&quot;&gt;</span><br><span class="line">            &lt;thead&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;th&gt;排序号&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;图片&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;名称&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;状态&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;跳转地址&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;操作&lt;/th&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/thead&gt;</span><br><span class="line">            &lt;tbody&gt;</span><br><span class="line">                &lt;tr v-for=&apos;item in tableData&apos;&gt;</span><br><span class="line">                    &lt;td&gt;&#123;&#123;item.sort&#125;&#125;&lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;</span><br><span class="line">                        &lt;img :src=&quot;&apos;https://abc.yongweisoft.cn/Application/Public&apos; + item.image&quot; class=&quot;rounded adv-images&quot; width=&quot;80&quot; height=&quot;80&quot;</span><br><span class="line">                            alt=&quot;&quot;&gt;</span><br><span class="line">                    &lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;&#123;&#123;item.name&#125;&#125;&lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;</span><br><span class="line">                        &lt;span class=&quot;text-success&quot; v-if=&apos;item.state == 1&apos;&gt;已启用&lt;/span&gt;</span><br><span class="line">                        &lt;span class=&quot;text-danger&quot; v-if=&apos;item.state == 0&apos;&gt;已禁用&lt;/span&gt;</span><br><span class="line">                    &lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;</span><br><span class="line">                        &lt;span class=&quot;badge badge-secondary&quot; v-if=&apos;item.status == 0&apos;&gt;不跳转&lt;/span&gt;</span><br><span class="line">                        &lt;span class=&quot;badge badge-success&quot; v-else-if=&apos;item.status == 1&apos;&gt;路径&lt;/span&gt;</span><br><span class="line">                        &lt;span class=&quot;badge badge-info&quot; v-else-if=&apos;item.status == 2&apos;&gt;指定内容&lt;/span&gt;</span><br><span class="line">                    &lt;/td&gt;</span><br><span class="line">                    &lt;td&gt;</span><br><span class="line">                        &lt;button type=&quot;button&quot; @click=&apos;showAlert(item.id)&apos; class=&quot;btn btn-primary btn-sm&quot;&gt;操作按钮&lt;/button&gt;</span><br><span class="line">                    &lt;/td&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/tbody&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var app = new Vue(&#123;</span><br><span class="line">            el: &apos;#app&apos;,</span><br><span class="line">            data: &#123;</span><br><span class="line">                tableData: [&#123; &quot;id&quot;: &quot;7&quot;, &quot;image&quot;: &quot;/upload/headImg/201803131315266038.jpg&quot;, &quot;name&quot;: &quot;12&quot;, &quot;status&quot;: &quot;0&quot;, &quot;url&quot;: &quot;&quot;, &quot;content&quot;: &quot;&quot;, &quot;sort&quot;: &quot;022&quot;, &quot;state&quot;: &quot;0&quot; &#125;, &#123; &quot;id&quot;: &quot;5&quot;, &quot;image&quot;: &quot;/upload/headImg/201803131315428439.jpg&quot;, &quot;name&quot;: &quot;222222&quot;, &quot;status&quot;: &quot;2&quot;, &quot;url&quot;: &quot;&quot;, &quot;content&quot;: &quot;容内容内容&quot;, &quot;sort&quot;: &quot;12&quot;, &quot;state&quot;: &quot;1&quot; &#125;, &#123; &quot;id&quot;: &quot;4&quot;, &quot;image&quot;: &quot;/upload/headImg/201803131315537248.jpg&quot;, &quot;name&quot;: &quot;333&quot;, &quot;status&quot;: &quot;1&quot;, &quot;url&quot;: &quot;http://www.baidu.com/&quot;, &quot;content&quot;: &quot;true&quot;, &quot;sort&quot;: &quot;true&quot;, &quot;state&quot;: &quot;1&quot; &#125;]</span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                showAlert: function (id) &#123;</span><br><span class="line">                    alert(id)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/TypeScript/TypeScript——访问修饰符/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/TypeScript/TypeScript——访问修饰符/" itemprop="url">TypeScript——访问修饰符</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:48:34+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>TypeScript——访问修饰符</p>
+
+          
         
       
     </div>
@@ -530,6 +1594,10 @@ document.body.appendChild(box);
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -574,7 +1642,7 @@ document.body.appendChild(box);
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

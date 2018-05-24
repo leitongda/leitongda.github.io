@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="登录ssh root@ip地址// 然后输入密码 网络管理命令systemctl status httpdsystemctl status apache2systemctl start apache2 // 启动systemctl stop apache2  // 停止enable // 跟随系统启动一起启动disable // 不跟随系统一起启动ifconfig // 查看ip地址ip addr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux预备知识——快捷键">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/日记本/Linux预备知识——快捷键/index.html">
+<meta property="og:site_name" content="野路子前端">
+<meta property="og:description" content="登录ssh root@ip地址// 然后输入密码 网络管理命令systemctl status httpdsystemctl status apache2systemctl start apache2 // 启动systemctl stop apache2  // 停止enable // 跟随系统启动一起启动disable // 不跟随系统一起启动ifconfig // 查看ip地址ip addr">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-24T15:49:43.780Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux预备知识——快捷键">
+<meta name="twitter:description" content="登录ssh root@ip地址// 然后输入密码 网络管理命令systemctl status httpdsystemctl status apache2systemctl start apache2 // 启动systemctl stop apache2  // 停止enable // 跟随系统启动一起启动disable // 不跟随系统一起启动ifconfig // 查看ip地址ip addr">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——快捷键/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux预备知识——快捷键 | 野路子前端</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">野路子前端</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">活儿一定要细～</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——快捷键/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux预备知识——快捷键</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:49:41+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h1><p><code>ssh root@ip地址</code><br><code>// 然后输入密码</code></p>
+<h1 id="网络管理命令"><a href="#网络管理命令" class="headerlink" title="网络管理命令"></a>网络管理命令</h1><p><code>systemctl status httpd</code><br><code>systemctl status apache2</code><br><code>systemctl start apache2 // 启动</code><br><code>systemctl stop apache2  // 停止</code><br><code>enable // 跟随系统启动一起启动</code><br><code>disable // 不跟随系统一起启动</code><br><code>ifconfig // 查看ip地址</code><br><code>ip addr // 查看ip地址</code><br><code>route // 路由信息，网关</code></p>
+<h1 id="命令行的下载命令："><a href="#命令行的下载命令：" class="headerlink" title="命令行的下载命令："></a>命令行的下载命令：</h1><blockquote>
+<p><code>wget 下载地址</code><br><code>curl  下载地址 -o 写入到指定名称的文件 --progress</code><br><code>// 现实进度条 --progress</code></p>
+</blockquote>
+<h1 id="查看服务器时间"><a href="#查看服务器时间" class="headerlink" title="查看服务器时间"></a>查看服务器时间</h1><p><code>date</code></p>
+<h1 id="查看Linux-帮助"><a href="#查看Linux-帮助" class="headerlink" title="查看Linux 帮助"></a>查看Linux 帮助</h1><p><code>curl --help</code><br><code>man curl //按q退出</code></p>
+<h1 id="在终端不小心按了-ctrl-s-怎么办？？"><a href="#在终端不小心按了-ctrl-s-怎么办？？" class="headerlink" title="在终端不小心按了 ctrl + s 怎么办？？"></a>在终端不小心按了 ctrl + s 怎么办？？</h1><blockquote>
+<p><code>ctrl + s // 暂停屏幕输出</code><br>使用<br><code>ctrl + q // 恢复屏幕输出</code></p>
+</blockquote>
+<h1 id="其它快捷键"><a href="#其它快捷键" class="headerlink" title="其它快捷键"></a>其它快捷键</h1><p><code>ctrl + d // 结束输入或退出shell</code><br><code>ctrl + l //（小写的L，不是I）清屏，等同于clear</code><br><code>ctrl + a / ctrl + e // 快速移动光标到行首/行尾</code></p>
+<p>进入vim后，退出时 提示没有文件名<br><code>:q! // 不保存，强行退出</code></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/24/日记本/Linux预备知识——免密远程登录/" rel="next" title="Linux预备知识——免密远程登录">
+                <i class="fa fa-chevron-left"></i> Linux预备知识——免密远程登录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/24/日记本/Linux预备知识——进程与线程/" rel="prev" title="Linux预备知识——进程与线程">
+                Linux预备知识——进程与线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head_img.jpg"
+                alt="Lei Tongda" />
+            
+              <p class="site-author-name" itemprop="name">Lei Tongda</p>
+              <p class="site-description motion-element" itemprop="description">努力的最大意义</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/leitongda" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#登录"><span class="nav-number">1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络管理命令"><span class="nav-number">2.</span> <span class="nav-text">网络管理命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令行的下载命令："><span class="nav-number">3.</span> <span class="nav-text">命令行的下载命令：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看服务器时间"><span class="nav-number">4.</span> <span class="nav-text">查看服务器时间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看Linux-帮助"><span class="nav-number">5.</span> <span class="nav-text">查看Linux 帮助</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在终端不小心按了-ctrl-s-怎么办？？"><span class="nav-number">6.</span> <span class="nav-text">在终端不小心按了 ctrl + s 怎么办？？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其它快捷键"><span class="nav-number">7.</span> <span class="nav-text">其它快捷键</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lei Tongda</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">保持 - 对称</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">页尾 - 呵呵</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

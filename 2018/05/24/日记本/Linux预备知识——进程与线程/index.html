@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Linux 查看进程树  pstrss // 查看进程树  调度和切换的时间：进程&amp;gt;线程&amp;gt;协程 理论上一个核一个线程效率最高 top 命令pid 进程编号按q键退出 ps 命令ps auxsudo ps aux // 非root用户// pid 越小的越有可能是主线程//（例外：pid最大是2的16次方，pid一直增加，当增加到最大值，会从0开始，没有占用的数字上）ps aux | g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux预备知识——进程与线程">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/日记本/Linux预备知识——进程与线程/index.html">
+<meta property="og:site_name" content="野路子前端">
+<meta property="og:description" content="Linux 查看进程树  pstrss // 查看进程树  调度和切换的时间：进程&amp;gt;线程&amp;gt;协程 理论上一个核一个线程效率最高 top 命令pid 进程编号按q键退出 ps 命令ps auxsudo ps aux // 非root用户// pid 越小的越有可能是主线程//（例外：pid最大是2的16次方，pid一直增加，当增加到最大值，会从0开始，没有占用的数字上）ps aux | g">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-24T15:49:55.342Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux预备知识——进程与线程">
+<meta name="twitter:description" content="Linux 查看进程树  pstrss // 查看进程树  调度和切换的时间：进程&amp;gt;线程&amp;gt;协程 理论上一个核一个线程效率最高 top 命令pid 进程编号按q键退出 ps 命令ps auxsudo ps aux // 非root用户// pid 越小的越有可能是主线程//（例外：pid最大是2的16次方，pid一直增加，当增加到最大值，会从0开始，没有占用的数字上）ps aux | g">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——进程与线程/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux预备知识——进程与线程 | 野路子前端</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">野路子前端</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">活儿一定要细～</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/日记本/Linux预备知识——进程与线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lei Tongda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_img.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="野路子前端">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux预备知识——进程与线程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:49:54+08:00">2018-05-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Linux 查看进程树</p>
+<blockquote>
+<p><code>pstrss // 查看进程树</code></p>
+</blockquote>
+<p>调度和切换的时间：进程&gt;线程&gt;协程</p>
+<p>理论上一个核一个线程效率最高</p>
+<h4 id="top-命令"><a href="#top-命令" class="headerlink" title="top 命令"></a>top 命令</h4><p><code>pid 进程编号</code><br><code>按q键退出</code></p>
+<h4 id="ps-命令"><a href="#ps-命令" class="headerlink" title="ps 命令"></a>ps 命令</h4><p><code>ps aux</code><br><code>sudo ps aux // 非root用户</code><br><code>// pid 越小的越有可能是主线程</code><br><code>//（例外：pid最大是2的16次方，pid一直增加，当增加到最大值，会从0开始，没有占用的数字上）</code><br><code>ps aux | grep python // grep 进行分组 筛选出python</code></p>
+<h4 id="kill-、pkill命令"><a href="#kill-、pkill命令" class="headerlink" title="kill 、pkill命令"></a>kill 、pkill命令</h4><p><code>kill 进程的pid</code></p>
+<h4 id="w-命令"><a href="#w-命令" class="headerlink" title="w 命令"></a>w 命令</h4><p><code>如果服务器被多个人使用， 当你需要重启服务的时候  使用w查看有没有其它人在服务器上工作。</code></p>
+<h4 id="重启网卡"><a href="#重启网卡" class="headerlink" title="重启网卡"></a>重启网卡</h4><blockquote>
+<p><code>ip addr</code><br>或<br><code>ifconfig</code><br>拿到网卡名字</p>
+</blockquote>
+<blockquote>
+<p><code>cd /etc/sysconfig/network-scripts/</code><br><code>ls // 查看目录下是否有 ifcfg-网卡名称</code><br><code>ifdown 网卡名称 // 关掉网卡[慎用]</code><br><code>ifup 网卡名称 // 启动网卡</code></p>
+</blockquote>
+<h4 id="排查网络故障"><a href="#排查网络故障" class="headerlink" title="排查网络故障"></a>排查网络故障</h4><blockquote>
+<p>能访问网络，但是访问不到特定网络<br><code>ping 网址 // ping不通</code></p>
+</blockquote>
+<p>使用 <code>tranceroute 网址</code></p>
+<blockquote>
+<p>会出来一啪啦的ip地址，这些地址就是你访问这个网址 所经过的路由器</p>
+</blockquote>
+<h4 id="如何找到占用端口的进程"><a href="#如何找到占用端口的进程" class="headerlink" title="如何找到占用端口的进程"></a>如何找到占用端口的进程</h4><blockquote>
+<p>使用 <code>netstat</code> 或者 <code>ss</code> 查看所有进程<br><code>netstat -an</code><br><code>netstat -anp // 显示进程 p代表process（英语一定要很OK）</code><br><code>netstat -anp | grep 8080 // 分组筛选</code><br>这个时候就可以使用<code>kill 加 进程id</code> 杀死这个进程了</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/24/日记本/Linux预备知识——快捷键/" rel="next" title="Linux预备知识——快捷键">
+                <i class="fa fa-chevron-left"></i> Linux预备知识——快捷键
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/24/日记本/webpack-externals/" rel="prev" title="webpack-externals">
+                webpack-externals <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head_img.jpg"
+                alt="Lei Tongda" />
+            
+              <p class="site-author-name" itemprop="name">Lei Tongda</p>
+              <p class="site-description motion-element" itemprop="description">努力的最大意义</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/leitongda" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#top-命令"><span class="nav-number">1.</span> <span class="nav-text">top 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ps-命令"><span class="nav-number">2.</span> <span class="nav-text">ps 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kill-、pkill命令"><span class="nav-number">3.</span> <span class="nav-text">kill 、pkill命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#w-命令"><span class="nav-number">4.</span> <span class="nav-text">w 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启网卡"><span class="nav-number">5.</span> <span class="nav-text">重启网卡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排查网络故障"><span class="nav-number">6.</span> <span class="nav-text">排查网络故障</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何找到占用端口的进程"><span class="nav-number">7.</span> <span class="nav-text">如何找到占用端口的进程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lei Tongda</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">保持 - 对称</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">页尾 - 呵呵</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
